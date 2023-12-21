@@ -13,6 +13,7 @@ public class PasswordActivity extends AppCompatActivity {
     Button submit;
     EditText password;
     TextView greetings;
+    TextView inputError;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class PasswordActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         submit = findViewById(R.id.btn_submit);
         greetings = findViewById(R.id.tv_greetings);
+        inputError = findViewById(R.id.inputError);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String name = bundle.getString("NAME");
@@ -37,6 +39,9 @@ public class PasswordActivity extends AppCompatActivity {
                     Intent intent = new Intent(PasswordActivity.this, HomeActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }
+                else{
+                    inputError.setText("Password must be at least 8 characters");
                 }
             }
         });
